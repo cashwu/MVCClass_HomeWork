@@ -1,7 +1,8 @@
-﻿using System;
+﻿using HomeWork.Enum;
+using HomeWork.Models;
+using HomeWork.Models.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
@@ -11,6 +12,17 @@ namespace HomeWork.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult FinancialTranscation()
+        {
+            var model = new FinancialTranscationViewModels
+            {
+                FinancialTranscations = GetFakeFinancialTranscationData()
+            };
+
+            return PartialView(model);
         }
 
         public ActionResult About()
@@ -25,6 +37,23 @@ namespace HomeWork.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        private static List<FinancialTranscation> GetFakeFinancialTranscationData()
+        {
+            var financialTranscations = new List<FinancialTranscation>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                financialTranscations.Add(new FinancialTranscation
+                {
+                    No = i,
+                    Category = i % 2 == 0 ? CategoryEnum.支出 : CategoryEnum.收入,
+                    Date = DateTime.Now.AddDays(i),
+                    Amount = i % 2 == 0 ? 150 : 200,
+                });
+            }
+            return financialTranscations;
         }
     }
 }
