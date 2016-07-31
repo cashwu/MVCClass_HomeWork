@@ -17,10 +17,7 @@ namespace HomeWork.Controllers
         [ChildActionOnly]
         public ActionResult FinancialTranscation()
         {
-            var model = new FinancialTranscationViewModels
-            {
-                FinancialTranscations = GetFakeFinancialTranscationData()
-            };
+            var model = GetFakeFinancialTranscationData();
 
             return PartialView(model);
         }
