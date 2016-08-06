@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.ComponentModel;
 using System.Data.Entity;
 
-namespace ServiceLab.Repositories
+namespace HomeWork.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {

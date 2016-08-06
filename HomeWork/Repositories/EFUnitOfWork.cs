@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using HomeWork.Models;
 using System.Data.Entity;
-using ServiceLab.Models;
 
-namespace ServiceLab.Repositories
+namespace HomeWork.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
@@ -13,7 +9,7 @@ namespace ServiceLab.Repositories
 
         public EFUnitOfWork()
         {
-            Context = new Database1Entities();
+            Context = new SkillTreeHomeworkEntities();
         }
 
         public void Save()
