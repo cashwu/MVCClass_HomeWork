@@ -2,7 +2,7 @@
 {
     public enum CategoryEnum
     {
-        支出 = 1,
-        收入 = 2
+        支出 = 0,
+        收入 = 1
     }
 }

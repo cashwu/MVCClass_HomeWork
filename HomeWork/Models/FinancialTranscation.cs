@@ -12,5 +12,9 @@ namespace HomeWork.Models
         public DateTime Date { get; set; }
 
         public Decimal Amount { get; set; }
+
+        public Guid Guid { get; set; }
+
+        public string Remark { get; set; }
     }
 }

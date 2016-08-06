@@ -28,7 +28,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Categoryyy" Type="Int32" Nullable="false" />
+          <Property Name="Categoryyy" Type="SkillTreeHomeworkModel.CategoryEnum" Nullable="false" />
           <Property Name="Amounttt" Type="Int32" Nullable="false" />
           <Property Name="Dateee" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Remarkkk" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -36,6 +36,7 @@
         <EntityContainer Name="SkillTreeHomeworkEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AccountBook" EntityType="Self.AccountBook" />
         </EntityContainer>
+        <EnumType Name="CategoryEnum" a:ExternalTypeName="HomeWork.Enum.CategoryEnum" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

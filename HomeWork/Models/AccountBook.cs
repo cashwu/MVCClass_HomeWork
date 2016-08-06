@@ -15,7 +15,7 @@ namespace HomeWork.Models
     public partial class AccountBook
     {
         public System.Guid Id { get; set; }
-        public int Categoryyy { get; set; }
+        public HomeWork.Enum.CategoryEnum Categoryyy { get; set; }
         public int Amounttt { get; set; }
         public System.DateTime Dateee { get; set; }
         public string Remarkkk { get; set; }

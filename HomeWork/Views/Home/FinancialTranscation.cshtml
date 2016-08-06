@@ -12,10 +12,12 @@
                 <th>金額</th>
             </tr>
 
-            @foreach (var item in Model)
+            @for (int i = 0; i < Model.Count; i++)
             {
+                var item = Model[i];
+
                 <tr>
-                    <td>@item.No</td>
+                    <td>@(i + 1)</td>
                     <td>@item.Category.ToString()</td>
                     <td>@item.Date.ToString("yyyy-MM-dd")</td>
                     <td>@item.Amount</td>

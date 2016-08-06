@@ -1,14 +1,14 @@
-﻿using HomeWork.Enum;
-using HomeWork.Models;
-using HomeWork.Models.ViewModels;
-using System;
+﻿using HomeWork.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SkillTreeHomeworkEntities _db = new SkillTreeHomeworkEntities();
+
         public ActionResult Index()
         {
             return View();
@@ -36,20 +36,18 @@ namespace HomeWork.Controllers
             return View();
         }
 
-        private static List<FinancialTranscation> GetFakeFinancialTranscationData()
+        private List<FinancialTranscation> GetFakeFinancialTranscationData()
         {
-            var financialTranscations = new List<FinancialTranscation>();
-
-            for (int i = 1; i <= 10; i++)
-            {
-                financialTranscations.Add(new FinancialTranscation
+            var financialTranscations = _db.AccountBook
+                .Select(a => new FinancialTranscation
                 {
-                    No = i,
-                    Category = i % 2 == 0 ? CategoryEnum.支出 : CategoryEnum.收入,
-                    Date = DateTime.Now.AddDays(i),
-                    Amount = i % 2 == 0 ? 150 : 200,
-                });
-            }
+                     Amount = a.Amounttt,
+                     Category = a.Categoryyy,
+                     Date = a.Dateee,
+                     Guid = a.Id,
+                     Remark = a.Remarkkk
+                }).ToList();
+                
             return financialTranscations;
         }
     }
