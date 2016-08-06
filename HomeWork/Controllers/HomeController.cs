@@ -1,13 +1,16 @@
-﻿using HomeWork.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using HomeWork.Models.Service;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SkillTreeHomeworkEntities _db = new SkillTreeHomeworkEntities();
+        private readonly AccountBookService _accountBookService;
+
+        public HomeController()
+        {
+            _accountBookService = new AccountBookService();
+        }
 
         public ActionResult Index()
         {
@@ -17,7 +20,7 @@ namespace HomeWork.Controllers
         [ChildActionOnly]
         public ActionResult FinancialTranscation()
         {
-            var model = GetFakeFinancialTranscationData();
+            var model = _accountBookService.Lookup();
 
             return PartialView(model);
         }
@@ -34,21 +37,6 @@ namespace HomeWork.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        private List<FinancialTranscation> GetFakeFinancialTranscationData()
-        {
-            var financialTranscations = _db.AccountBook
-                .Select(a => new FinancialTranscation
-                {
-                     Amount = a.Amounttt,
-                     Category = a.Categoryyy,
-                     Date = a.Dateee,
-                     Guid = a.Id,
-                     Remark = a.Remarkkk
-                }).ToList();
-                
-            return financialTranscations;
         }
     }
 }
