@@ -1,20 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using HomeWork.Repositories;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HomeWork.Models.Service
 {
-    public class AccountBookService
+    public class AccountBookService : Repository<AccountBook>
     {
-        private readonly SkillTreeHomeworkEntities _db;
+        private readonly IRepository<AccountBook> _accountBookRepo;
 
-        public AccountBookService()
+
+        public AccountBookService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _db = new SkillTreeHomeworkEntities();
+            _accountBookRepo = new Repository<AccountBook>(unitOfWork);
         }
 
         public List<FinancialTranscation> Lookup()
         {
-            var viewModel = _db.AccountBook
+            var viewModel = _accountBookRepo.LookupAll()
                .Select(a => new FinancialTranscation
                {
                    Amount = a.Amounttt,

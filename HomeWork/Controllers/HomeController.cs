@@ -1,4 +1,5 @@
 ﻿using HomeWork.Models.Service;
+using HomeWork.Repositories;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
@@ -9,7 +10,8 @@ namespace HomeWork.Controllers
 
         public HomeController()
         {
-            _accountBookService = new AccountBookService();
+            var unitOfWork = new EFUnitOfWork();
+            _accountBookService = new AccountBookService(unitOfWork);
         }
 
         public ActionResult Index()
