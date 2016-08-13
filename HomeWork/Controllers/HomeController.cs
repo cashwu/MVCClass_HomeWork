@@ -1,5 +1,7 @@
-﻿using HomeWork.Models.Service;
+﻿using HomeWork.Models;
+using HomeWork.Models.Service;
 using HomeWork.Repositories;
+using System;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
@@ -16,6 +18,29 @@ namespace HomeWork.Controllers
 
         public ActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index([Bind(Include = "Category, Date, Amount, Remark")]FinancialTranscation model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var accountBook = new AccountBook
+            {
+                Id = Guid.NewGuid(),
+                Amounttt = Convert.ToInt32(model.Amount),
+                Categoryyy = model.Category,
+                Dateee = model.Date,
+                Remarkkk = model.Remark
+            };
+
+            _accountBookService.Create(accountBook);
+            _accountBookService.Commit();
+
             return View();
         }
 
