@@ -26,3 +26,11 @@ textarea {
 .well {
     margin-top: 20px;
 }
+
+.fontRed {
+    color: red;
+}
+
+.fontBlue {
+    color: blue;
+}
