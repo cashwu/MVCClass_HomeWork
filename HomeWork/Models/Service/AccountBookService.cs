@@ -25,7 +25,9 @@ namespace HomeWork.Models.Service
                    Date = a.Dateee,
                    Guid = a.Id,
                    Remark = a.Remarkkk
-               }).ToList();
+               })
+               .OrderByDescending(a => a.No)
+               .ToList();
 
             return viewModel;
         }
