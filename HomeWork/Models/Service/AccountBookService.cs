@@ -16,9 +16,10 @@ namespace HomeWork.Models.Service
 
         public List<FinancialTranscation> Lookup()
         {
-            var viewModel = _accountBookRepo.LookupAll()
-               .Select(a => new FinancialTranscation
+            var viewModel = _accountBookRepo.LookupAll().ToList()
+               .Select((a, index) => new FinancialTranscation
                {
+                   No = index + 1,
                    Amount = a.Amounttt,
                    Category = a.Categoryyy,
                    Date = a.Dateee,
