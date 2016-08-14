@@ -2,6 +2,7 @@
 using HomeWork.Models.Service;
 using HomeWork.Repositories;
 using System;
+using System.Net;
 using System.Web.Mvc;
 
 namespace HomeWork.Controllers
@@ -26,7 +27,7 @@ namespace HomeWork.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return new HttpStatusCodeResult(HttpStatusCode.ExpectationFailed);
             }
 
             var accountBook = new AccountBook
@@ -41,7 +42,7 @@ namespace HomeWork.Controllers
             _accountBookService.Create(accountBook);
             _accountBookService.Commit();
 
-            return View();
+            return PartialView("FinancialTranscation", _accountBookService.Lookup());
         }
 
         [ChildActionOnly]
