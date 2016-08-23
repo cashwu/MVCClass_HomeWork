@@ -1,0 +1,9 @@
+﻿@model DateTime?
+@{
+    var val = Model.HasValue ? Model.Value : DateTime.MinValue;
+    var data = Equals(val, DateTime.MinValue)
+        ? null
+        : string.Format("{0:yyyy/MM/dd}", val);
+}
+
+@Html.TextBox("", data, new { @class = "date-datepicker input-small form-control", placeholder = "日期", data_date_format = "yy/mm/dd", data_val_date = "日期格式錯誤" })
